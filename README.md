@@ -25,7 +25,7 @@ Containerização da aplicação Spring Boot com PostgreSQL utilizando Docker e 
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/SEU-USUARIO/satagromonitor.git
+git clone https://github.com/EduardoEinsfeldt/satagromonitor.git
 cd satagromonitor
 
 # 1.5 (Opcional) Instalar Java 17 no GitHub Codespace
