@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: rm556460-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/satagro
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres123
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - satagro-net
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: rm556460-db
+    environment:
+      - POSTGRES_DB=satagro
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - satagro-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - satagro-net
+    restart: unless-stopped
+
+volumes:
+  satagro-data:
+
+networks:
+  satagro-net:
+    driver: bridge
