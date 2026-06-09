@@ -15,6 +15,10 @@ Containerização da aplicação Spring Boot com PostgreSQL utilizando Docker e 
 - **rm556460-db**: Container do PostgreSQL com volume nomeado para persistência
 - Ambos os containers estão na mesma rede (`satagro-net`)
 
+## Arquitetura Macro
+
+![Arquitetura Macro da Solução](docs/arquitetura.png)
+
 ## Como Executar
 
 ### Passo a passo
